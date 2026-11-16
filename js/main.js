@@ -48,9 +48,9 @@ async function getFontSource(id) {
 
 // ------------------------------------------------------------------ state
 const DEFAULT = {
-  text: 'מסד הארץ', font: 'original', height: 25.6, spacing: 2.5, wordSpace: 0, border: 4.5, offsetX: 0, offsetY: 0,
+  text: 'הכנס טקסט', font: 'original', height: 25.6, spacing: 2.5, wordSpace: 0, border: 4.5, offsetX: 0, offsetY: 0,
   stand: '#1d1d1d', backing: '#1d1d1d', letters: '#f3f3f3',
-  per: { 3: { c: '#47b9dd', p: 1 } }, name: 'massad-haaretz',
+  per: { 0: { c: '#47b9dd', p: 1 } }, name: 'logo',
 };
 let S = structuredClone(DEFAULT);
 try {
@@ -344,7 +344,7 @@ $('#share').addEventListener('click', async (e) => {
 });
 
 $('#reset').addEventListener('click', () => {
-  if (!confirm('Reset everything to the original מסד הארץ logo?')) return;
+  if (!confirm('Reset everything to the default settings?')) return;
   history.replaceState(null, '', location.pathname); location.reload();
 });
 
