@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NVP Logo Maker</title>
+  <meta name="description" content="Design 3D-printable logo stands: type text, pick colors and pegged letters, export a 3MF for Bambu Studio.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/opentype.js/1.3.4/opentype.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/clipper-lib@6.4.2/clipper.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script type="importmap">
+  { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  } }
+  </script>
+</head>
+<body>
+  <div class="app">
+    <aside class="panel">
+      <header class="brand">
+        <h1>Logo Maker</h1>
+        <p>Type a name, pick colors, export a print-ready 3MF. The stand stays the same.</p>
+      </header>
+
+      <section class="group">
+        <label class="field">
+          <span>Text</span>
+          <input id="text" type="text" dir="rtl" autocomplete="off" spellcheck="false">
+        </label>
+        <label class="field">
+          <span>Font</span>
+          <select id="font"></select>
+        </label>
+        <label class="upload">
+          <input id="fontFile" type="file" accept=".ttf,.otf,.woff">
+          <span>Upload your own font (.ttf / .otf / .woff)</span>
+        </label>
+      </section>
+
+      <section class="group">
+        <h2>Size &amp; layout</h2>
+        <div class="slider" data-key="height" data-min="10" data-max="60" data-step="0.1"><span>Letter height</span><em>mm</em></div>
+        <div class="slider" data-key="spacing" data-min="-2" data-max="15" data-step="0.1"><span>Letter spacing</span><em>mm</em></div>
+        <div class="slider" data-key="wordSpace" data-min="0" data-max="30" data-step="0.5"><span>Word spacing</span><em>mm</em></div>
+        <div class="slider" data-key="border" data-min="2" data-max="10" data-step="0.1"><span>Background border</span><em>mm</em></div>
+        <div class="slider" data-key="offsetX" data-min="-60" data-max="60" data-step="0.5"><span>Shift text ↔ (vs. stand)</span><em>mm</em></div>
+        <div class="slider" data-key="offsetY" data-min="-15" data-max="15" data-step="0.5"><span>Shift text ↕ (vs. stand)</span><em>mm</em></div>
+      </section>
+
+      <section class="group">
+        <h2>Colors</h2>
+        <div class="colors">
+          <label class="swatch"><input type="color" data-color="stand"><span>Stand</span></label>
+          <label class="swatch"><input type="color" data-color="backing"><span>Background</span></label>
+          <label class="swatch"><input type="color" data-color="letters"><span>Letters</span></label>
+        </div>
+      </section>
+
+      <section class="group">
+        <h2>Letters</h2>
+        <p class="hint">Give a letter its own color. Tick <b>Pegs</b> to print it separately: it gets peg holes, and the background gets matching pegs. That way the main print doesn't swap filament on every layer for one letter.</p>
+        <div id="letters" class="letters"></div>
+      </section>
+
+      <section class="group">
+        <div id="notes" class="notes"></div>
+      </section>
+
+      <section class="group export">
+        <label class="field">
+          <span>File name</span>
+          <input id="name" type="text" autocomplete="off">
+        </label>
+        <div class="buttons">
+          <button id="dl3mf" class="primary">Download 3MF</button>
+          <button id="dlstl">STLs (.zip)</button>
+          <button id="share">Copy link</button>
+          <button id="reset">Reset</button>
+        </div>
+        <p class="hint small">Separate (pegged) letters are placed face-up, with the peg holes on the bed. The holes are small enough to bridge, so no supports are needed.</p>
+      </section>
+    </aside>
+
+    <main class="stage">
+      <div class="viewbar">
+        <div class="seg" role="tablist">
+          <button data-view="assembled" class="on">Assembled</button>
+          <button data-view="plate">Print plate</button>
+        </div>
+        <span id="status" class="status"></span>
+      </div>
+      <canvas id="view"></canvas>
+    </main>
+  </div>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
