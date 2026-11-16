@@ -48,7 +48,7 @@ async function getFontSource(id) {
 
 // ------------------------------------------------------------------ state
 const DEFAULT = {
-  text: 'הכנס טקסט', font: 'original', height: 25.6, spacing: 2.5, wordSpace: 0, border: 4.5, offsetX: 0, offsetY: 0,
+  text: 'הכנס טקסט', font: 'rubik', height: 25.6, spacing: 2.5, wordSpace: 6, border: 4.5, offsetX: 0, offsetY: 0,
   stand: '#1d1d1d', backing: '#1d1d1d', letters: '#f3f3f3',
   per: { 0: { c: '#47b9dd', p: 1 } }, name: 'logo',
 };
@@ -91,8 +91,8 @@ $('#text').addEventListener('input', (e) => { S.text = e.target.value; renderLet
 $('#name').addEventListener('input', (e) => { S.name = e.target.value; saveHash(); });
 fontSel.addEventListener('change', () => {
   const was = S.font; S.font = fontSel.value;
-  if (was === 'original' && S.font !== 'original' && S.wordSpace === 0) { S.wordSpace = 8; document.querySelector('[data-key=wordSpace]')._set(8); }
-  if (was !== 'original' && S.font === 'original' && S.wordSpace === 8) { S.wordSpace = 0; document.querySelector('[data-key=wordSpace]')._set(0); }
+  if (was === 'original' && S.font !== 'original' && S.wordSpace === 0) { S.wordSpace = 6; document.querySelector('[data-key=wordSpace]')._set(6); }
+  if (was !== 'original' && S.font === 'original' && S.wordSpace === 6) { S.wordSpace = 0; document.querySelector('[data-key=wordSpace]')._set(0); }
   schedule();
 });
 $('#fontFile').addEventListener('change', async (e) => {

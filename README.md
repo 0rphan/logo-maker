@@ -17,7 +17,7 @@ Everything runs in the browser, so there is no server to set up. It's ready to h
 |---|---|
 | Text | Hebrew is laid out right-to-left. Latin letters and digits inside the text are kept left-to-right. |
 | Font | *Original logo letters* uses the exact glyphs from the original model (מ ס ד ה א ר ץ). Other letters fall back to Rubik. You can also pick one of 10 Hebrew Google Fonts or upload a .ttf, .otf or .woff file. |
-| Letter height, spacing, word spacing | The default height of 25.6 mm and spacing of 2.5 mm reproduce the original exactly. |
+| Letter height, spacing, word spacing | The site opens in Rubik with 6 mm word spacing. To reproduce the original exactly, type מסד הארץ, choose *Original logo letters*, and set word spacing to 0. Height 25.6 mm and spacing 2.5 mm are already the defaults. |
 | Background border | The background is the letters offset outward by this amount (default 4.5 mm), with the gaps filled in. |
 | Shift text | Moves the text relative to the stand connector. |
 | Colors | Stand, background, the default letter color, and a color per letter. |
